@@ -171,7 +171,7 @@ function update_position() {
           image +
           '"></div>';
 
-        popupText += '<div class="text-preview-wrapper">';
+        popupText += '<div class="leader-text-preview-wrapper">';
 
         popupText +=
           "<p class='details'><i class='fa fa-user '></i><span>" +
@@ -181,12 +181,10 @@ function update_position() {
         popupText +=
           '<p class="details"><a target="_blank" href="mailto:' +
           leaderEmail +
-          '"><i class="fa fa-envelope-o"></i><span> ' +
-          leaderEmail +
-          "</span></a></p>";
+          '"><i class="fa fa-envelope-o"></i><span> Email</span></a></p>';
 
         popupText +=
-          '<p class="details"><a target="_blank" href="mailto:' +
+          '<p class="details"><a target="_blank" href="https://wa.me/+' +
           leaderWhatsApp +
           '"><i class="fa fa-whatsapp"></i><span> ' +
           leaderWhatsApp +
@@ -218,7 +216,7 @@ function update_position() {
             coleaderOnePhoto +
             '"></div>';
 
-          popupText += '<div class="text-preview-wrapper">';
+          popupText += '<div class="coleaders-text-preview-wrapper">';
 
           popupText +=
             "<p class='details'><i class='fa fa-user '></i><span>" +
@@ -226,7 +224,7 @@ function update_position() {
             "</span></p>";
 
           popupText +=
-            '<p class="details"><a target="_blank" href="mailto:' +
+            '<p class="details"><a target="_blank" href="https://wa.me/+' +
             coleaderOneWhatsApp +
             '"><i class="fa fa-whatsapp"></i><span> ' +
             coleaderOneWhatsApp +
@@ -256,7 +254,7 @@ function update_position() {
             coleaderTwoPhoto +
             '"></div>';
 
-          popupText += '<div class="text-preview-wrapper">';
+          popupText += '<div class="coleaders-text-preview-wrapper">';
 
           popupText +=
             "<p class='details'><i class='fa fa-user '></i><span>" +
@@ -264,7 +262,7 @@ function update_position() {
             "</span></p>";
 
           popupText +=
-            '<p class="details"><a target="_blank" href="mailto:' +
+            '<p class="details"><a target="_blank" href="https://wa.me/+' +
             coleaderTwoWhatsApp +
             '"><i class="fa fa-whatsapp"></i><span> ' +
             coleaderTwoWhatsApp +
@@ -300,7 +298,7 @@ function update_position() {
             coleaderThreePhoto +
             '"></div>';
 
-          popupText += '<div class="text-preview-wrapper">';
+          popupText += '<div class="coleaders-text-preview-wrapper">';
 
           popupText +=
             "<p class='details'><i class='fa fa-user '></i><span>" +
@@ -308,7 +306,7 @@ function update_position() {
             "</span></p>";
 
           popupText +=
-            '<p class="details"><a target="_blank" href="mailto:' +
+            '<p class="details"><a target="_blank" href="https://wa.me/+' +
             coleaderThreeWhatsApp +
             '"><i class="fa fa-whatsapp"></i><span> ' +
             coleaderThreeWhatsApp +
@@ -338,7 +336,7 @@ function update_position() {
             coleaderFourPhoto +
             '"></div>';
 
-          popupText += '<div class="text-preview-wrapper">';
+          popupText += '<div class="coleaders-text-preview-wrapper">';
 
           popupText +=
             "<p class='details'><i class='fa fa-user '></i><span>" +
@@ -346,7 +344,7 @@ function update_position() {
             "</span></p>";
 
           popupText +=
-            '<p class="details"><a target="_blank" href="mailto:' +
+            '<p class="details"><a target="_blank" href="https://wa.me/+' +
             coleaderFourWhatsApp +
             '"><i class="fa fa-whatsapp"></i><span> ' +
             coleaderFourWhatsApp +
@@ -393,13 +391,12 @@ function update_position() {
 
         for (i = 0; i < markersArray.length; i++) {
           if (markersArray[i]["id"] === clickedListingItemid) {
-            console.log(markersArray[i]["_latlng"]["lng"] + 1);
             map.flyTo(
               [
-                markersArray[i]["_latlng"]["lat"] + 0.0045,
+                markersArray[i]["_latlng"]["lat"] + 0.02,
                 markersArray[i]["_latlng"]["lng"],
               ],
-              16,
+              14,
               {
                 animate: true,
                 duration: 1.5,
