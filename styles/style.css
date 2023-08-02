@@ -394,7 +394,7 @@ div.markers-length {
 /* styling the custom button */
 #map > div.leaflet-control-container > div.leaflet-top.leaflet-right > div:nth-child(2) > button > span > img{
   width: 27px;
-  margin-top: -3px;
+  margin-top: 1px;
   margin-left: -5px
 }
 
