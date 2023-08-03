@@ -179,12 +179,7 @@ function update_position() {
 
         popupText += '<p id="leader-text">Leader</p>';
 
-        if (image.indexOf("open?id") === -1) {
-          image = image.replace("file/d/", "uc?id=");
-          image = image.replace("/view?usp=drivesdk", "");
-        } else {
-          image = image.replace("open?id=", "uc?id=");
-        }
+       
 
         popupText +=
           '<div class="image-preview-wrapper"><img class="image-preview" src = "' +
