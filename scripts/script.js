@@ -12,16 +12,20 @@ var esriWorldImagery = L.tileLayer(
       "Tiles &copy; Esri",
   }
 );
-var stamenTonerLight = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'png',
-  attribution:
+var stamenTonerLight = L.tileLayer(
+  "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}",
+  {
+    attribution:
+      'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: "abcd",
+    minZoom: 0,
+    maxZoom: 20,
+    ext: "png",
+    attribution:
       '<a target="_blank" href=http://www.geocadder.bg/en>GEOCADDER</a> | ' +
-      "Tiles &copy; Esri"
-});
+      "Tiles &copy; Esri",
+  }
+);
 
 var map = L.map("map", {
   layers: [stamenTonerLight],
@@ -39,50 +43,66 @@ var baseLayers = {
 
 L.control.layers(baseLayers).addTo(map);
 
+var isInfoContainerOpen = true;
+
+var isSidebarOpen = true;
+var windowheight = $(window).height();
+var windowWidth = $(window).width();
+
 // adding custom button for toggling the legend
-L.easyButton('<img src="images/info-button.png">', function (btn, map) {
-  if ($(".legend").css("display") === "block") {
-    $(".legend").css("display", "none");
+L.easyButton('<img src="images/list-icon.png">', function (btn, map) {
+  console.log("desi")
+  if (isSidebarOpen == true) {
+    isSidebarOpen = false;
+    if (windowWidth > 630) {      
+      $("#map").css("width", "100%");
+      $("#map").css("left", "0");
+      $("#sidebar").css("display", "none");
+    } else {
+      $("#map").css("height", "100%");
+      $("#sidebar").css("display", "none");
+    }
   } else {
-    $(".legend").css("display", "block");
+    isSidebarOpen = true;
+    if (windowWidth > 630) {
+      console.log("3")
+      $("#map").css("width", "80%");
+      $("#map").css("left", "20%");
+      $("#sidebar").css("display", "block");
+    } else {
+      console.log("4")
+      $("#map").css("height", "75%");
+      $("#sidebar").css("display", "block");
+    }
   }
 })
   .setPosition("topright")
   .addTo(map);
 // end adding custom button for toggling the legend
 
-// var geocoder = L.Control.Geocoder.nominatim();
-// if (URLSearchParams && location.search) {
-//   // parse /?geocoder=nominatim from URL
-//   var params = new URLSearchParams(location.search);
-//   var geocoderString = params.get("geocoder");
-//   if (geocoderString && L.Control.Geocoder[geocoderString]) {
-//     console.log("Using geocoder", geocoderString);
-//     geocoder = L.Control.Geocoder[geocoderString]();
-//   } else if (geocoderString) {
-//     console.warn("Unsupported geocoder", geocoderString);
-//   }
-// }
-// var control = L.Control.geocoder({
-//   geocoder: geocoder,
-// }).addTo(map);
-
 var marker;
 var markersArray = [];
 
-var isInfoContainerOpen = true;
-$(
-  "#map > div.leaflet-control-container > div.leaflet-top.leaflet-right > div.leaflet-bar.easy-button-container.leaflet-control > button"
-).click(function () {
-  console.log(isInfoContainerOpen);
-  if (isInfoContainerOpen == true) {
-    $("#infoContainer").css("display", "none");
-    isInfoContainerOpen = false;
-  } else {
-    $("#infoContainer").css("display", "block");
-    isInfoContainerOpen = true;
-  }
-});
+// $(
+//   "#map > div.leaflet-control-container > div.leaflet-top.leaflet-right > div.leaflet-bar.easy-button-container.leaflet-control > button"
+// ).click(function () {
+//   if (isSidebarOpen == true) {
+//     isSidebarOpen = false;
+//     if (windowWidth > 630){
+//       $("#map").css("width", "80%");
+//     } else {
+//       $("#map").css("height", "75%")
+//     }
+//   } else {
+//     isSidebarOpen = true;
+//     if (windowWidth > 630){
+//       $("#map").css("width", "100%")
+//     } else {
+//       $("#map").css("height", "100%")
+//     }
+//   }
+// });
+
 map.on("click", function (e) {
   $("#infoContainer").css("display", "none");
   isInfoContainerOpen = false;
@@ -372,6 +392,11 @@ function update_position() {
         });
         $(marker).attr("id", id);
 
+        marker.on("click", function () {
+          $("#infoContainer").css("display", "none");
+          isInfoContainerOpen = false;
+        });
+
         var popup = L.popup().setContent(popupText);
         marker.bindPopup(popup).openPopup();
         marker.addTo(map);
@@ -387,6 +412,9 @@ function update_position() {
         // });
       }
       $(".item").click(function (event) {
+        $("#infoContainer").css("display", "none");
+        isInfoContainerOpen = false;
+
         var clickedListingItemid = $(event.target).attr("id");
 
         for (i = 0; i < markersArray.length; i++) {
@@ -396,13 +424,12 @@ function update_position() {
                 markersArray[i]["_latlng"]["lat"] + 0.02,
                 markersArray[i]["_latlng"]["lng"],
               ],
-              14,
+              11,
               {
                 animate: true,
                 duration: 1.5,
               }
             );
-            var currentViewCenter = map.getCenter();
             markersArray[i].openPopup();
             // markersArray[i].fire('click');
           }
