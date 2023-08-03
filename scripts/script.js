@@ -51,10 +51,10 @@ var windowWidth = $(window).width();
 
 // adding custom button for toggling the legend
 L.easyButton('<img src="images/list-icon.png">', function (btn, map) {
-  console.log("desi")
+  console.log("desi");
   if (isSidebarOpen == true) {
     isSidebarOpen = false;
-    if (windowWidth > 630) {      
+    if (windowWidth > 630) {
       $("#map").css("width", "100%");
       $("#map").css("left", "0");
       $("#sidebar").css("display", "none");
@@ -65,12 +65,12 @@ L.easyButton('<img src="images/list-icon.png">', function (btn, map) {
   } else {
     isSidebarOpen = true;
     if (windowWidth > 630) {
-      console.log("3")
+      console.log("3");
       $("#map").css("width", "80%");
       $("#map").css("left", "20%");
       $("#sidebar").css("display", "block");
     } else {
-      console.log("4")
+      console.log("4");
       $("#map").css("height", "75%");
       $("#sidebar").css("display", "block");
     }
@@ -107,6 +107,61 @@ map.on("click", function (e) {
   $("#infoContainer").css("display", "none");
   isInfoContainerOpen = false;
 });
+
+var images = [];
+function update_position_images() {
+  $.getJSON(
+    "https://sheets.googleapis.com/v4/spreadsheets/1AykyLBLDFlILoxjTyPDr_PMjCUot9hrLV8nMfoZ_oa0/values/Sheet1!A3:W3000?majorDimension=ROWS&key=AIzaSyCkSS3c2xDpR_hlkgN0kYx4VT4Jn09Zs6Y",
+    function (response) {
+      response.values.forEach(drawMarker);
+
+      function drawMarker(element) {
+        if (element[8]) {
+          var img = new Image(); 
+          img.onload = function () {
+            console.log("desi-1")
+          };
+          img.src = element[8]; 
+          images.push(element[8]);
+        }
+        if (element[12]) {
+          var img = new Image(); 
+          img.onload = function () {
+            console.log("desi-2")
+          };
+          img.src = element[12]; 
+          images.push(element[12]);
+        }
+        if (element[15]) {
+          var img = new Image(); 
+          img.onload = function () {
+            console.log("desi-3")
+          };
+          img.src = element[15]; 
+          images.push(element[15]);
+        }
+        if (element[18]) {
+          var img = new Image(); 
+          img.onload = function () {
+            console.log("desi-4")
+          };
+          img.src = element[18]; 
+          images.push(element[18]);
+        }
+        if (element[21]) {
+          var img = new Image(); 
+          img.onload = function () {
+            console.log("desi-5")
+          };
+          img.src = element[21]; 
+          images.push(element[21]);
+        }
+      }
+      console.log(images);
+    }
+  );
+}
+update_position_images();
 
 function update_position() {
   $.getJSON(
@@ -179,7 +234,14 @@ function update_position() {
 
         popupText += '<p id="leader-text">Leader</p>';
 
-       
+        // var img = new Image(); // Create new img element
+        // img.onload = function () {
+        //   popupText +=
+        //   '<div class="image-preview-wrapper"><img class="image-preview" src = "' +
+        //   image +
+        //   '"></div>';
+        // };
+        // img.src = image; // Set source path
 
         popupText +=
           '<div class="image-preview-wrapper"><img class="image-preview" src = "' +
@@ -216,16 +278,6 @@ function update_position() {
         if (coleaderOneName) {
           popupText += '<div class="coleaders-details-wrapper">';
 
-          if (coleaderOnePhoto.indexOf("open?id") === -1) {
-            coleaderOnePhoto = coleaderOnePhoto.replace("file/d/", "uc?id=");
-            coleaderOnePhoto = coleaderOnePhoto.replace(
-              "/view?usp=drivesdk",
-              ""
-            );
-          } else {
-            coleaderOnePhoto = coleaderOnePhoto.replace("open?id=", "uc?id=");
-          }
-
           popupText +=
             '<div class="image-preview-wrapper"><img class="image-preview" src = "' +
             coleaderOnePhoto +
@@ -253,16 +305,6 @@ function update_position() {
         // Coleader 2
         if (coleaderTwoName) {
           popupText += '<div class="coleaders-details-wrapper">';
-
-          if (coleaderTwoPhoto.indexOf("open?id") === -1) {
-            coleaderTwoPhoto = coleaderTwoPhoto.replace("file/d/", "uc?id=");
-            coleaderTwoPhoto = coleaderTwoPhoto.replace(
-              "/view?usp=drivesdk",
-              ""
-            );
-          } else {
-            coleaderTwoPhoto = coleaderTwoPhoto.replace("open?id=", "uc?id=");
-          }
 
           popupText +=
             '<div class="image-preview-wrapper"><img class="image-preview" src = "' +
@@ -292,22 +334,6 @@ function update_position() {
         if (coleaderThreeName) {
           popupText += '<div class="coleaders-details-wrapper">';
 
-          if (coleaderThreePhoto.indexOf("open?id") === -1) {
-            coleaderThreePhoto = coleaderThreePhoto.replace(
-              "file/d/",
-              "uc?id="
-            );
-            coleaderThreePhoto = coleaderThreePhoto.replace(
-              "/view?usp=drivesdk",
-              ""
-            );
-          } else {
-            coleaderThreePhoto = coleaderThreePhoto.replace(
-              "open?id=",
-              "uc?id="
-            );
-          }
-
           popupText +=
             '<div class="image-preview-wrapper"><img class="image-preview" src = "' +
             coleaderThreePhoto +
@@ -335,16 +361,6 @@ function update_position() {
         // Coleader 4
         if (coleaderFourName) {
           popupText += '<div class="coleaders-details-wrapper">';
-
-          if (coleaderFourPhoto.indexOf("open?id") === -1) {
-            coleaderFourPhoto = coleaderFourPhoto.replace("file/d/", "uc?id=");
-            coleaderFourPhoto = coleaderFourPhoto.replace(
-              "/view?usp=drivesdk",
-              ""
-            );
-          } else {
-            coleaderFourPhoto = coleaderFourPhoto.replace("open?id=", "uc?id=");
-          }
 
           popupText +=
             '<div class="image-preview-wrapper"><img class="image-preview" src = "' +
