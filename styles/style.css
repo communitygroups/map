@@ -22,7 +22,7 @@ body {
   top: 0;
   left: 0;
   padding-bottom: 5px;
-  overflow: hidden;
+  overflow: auto;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
 }
 
@@ -73,7 +73,7 @@ body {
   padding: 10px;
   text-decoration: none;
 
-  background-color: #E76F51;
+  background-color: #AC1F23;
   color: #ffffff;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -179,7 +179,7 @@ div.leader-details-wrapper {
 
 p#leader-text{
   text-align: center;
-  background-color: #E76F51;
+  background-color: #AC1F23;
   color: #ffffff;
   width: 90%;
   margin-top: 0;
@@ -189,7 +189,7 @@ p#leader-text{
 }
 p#coleaders-text{
   text-align: center;
-  background-color: #E76F51;
+  background-color: #AC1F23;
   color: #ffffff;
   width: 91%;
   margin-top: 0;
@@ -222,7 +222,7 @@ div.image-preview-wrapper {
 }
 
 div.leader-text-preview-wrapper {
-  vertical-align: sub;
+  vertical-align: text-bottom;
   /* width: 69%; */
 }
 div.coleaders-text-preview-wrapper {
@@ -267,7 +267,7 @@ div.name-wrapper {
   top: 0;
   font-size: 15px;
   position: absolute;
-  background-color: #e76f51;
+  background-color: #AC1F23;
   color: #ffffff;
   font-weight: 700;
   width: 297px;
@@ -298,7 +298,7 @@ div.popup-directions-icon {
 }
 
 .material-symbols-outlined.directions-icon {
-  color: #e76f51;
+  color: #AC1F23;
   margin-top: 11px;
   margin-left: 11px;
   font-size: 28px;
@@ -323,7 +323,7 @@ p.details a {
 }
 
 p.details a:hover {
-  color: #e76f51;
+  color: #AC1F23;
   text-decoration: none;
 }
 
@@ -374,16 +374,16 @@ img.cluster-image {
   width: 50px;
   height: 50px;
   border-radius: 30px;
-  border: 1px solid #e76f51;
+  border: 1px solid #AC1F23;
   margin-bottom: -15px;
 }
 
 div.markers-length {
   font-family: "Comfortaa", cursive;
   margin-left: 34px;
-  border: 1px solid #e76f51;
+  border: 1px solid #AC1F23;
   border-radius: 30px;
-  background-color: #e76f51;
+  background-color: #AC1F23;
   width: 30px;
   text-align: center;
   font-size: 12px;
@@ -404,7 +404,7 @@ div.markers-length {
 /* styling the info container */
 #infoContainer {
   text-align: center;
-    border: 5px solid #e76f51;
+    border: 5px solid #AC1F23;
     position: absolute;
     /* border-radius: 12px; */
     padding: 3px;
