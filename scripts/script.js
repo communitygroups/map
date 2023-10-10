@@ -12,23 +12,21 @@ var esriWorldImagery = L.tileLayer(
       "Tiles &copy; Esri",
   }
 );
-var stamenTonerLight = L.tileLayer(
-  "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}",
-  {
-    attribution:
-      'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    subdomains: "abcd",
-    minZoom: 0,
-    maxZoom: 20,
-    ext: "png",
-    attribution:
-      '<a target="_blank" href=http://www.geocadder.bg/en>GEOCADDER</a> | ' +
-      "Tiles &copy; Esri",
-  }
-);
+var mapboxMap = L.tileLayer( 
+  "https://api.mapbox.com/styles/v1/salcgmap/clnk6465n000401qq0f5790vh/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2FsY2dtYXAiLCJhIjoiY2xuaXBndjhqMTB2czJqbWlmbWFxYmYzNyJ9.U1RjmfzFY_kvCrrLFbCWKw", 
+  { 
+    attribution: 
+      '<a target="_blank" href=http://www.geocadder.bg>GEOCADDER</a> | ' + 
+      ' Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + 
+      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 
+      'Imagery Вy © <a href="https://www.mapbox.com/">Mapbox</a>', 
+    tileSize: 512, 
+    zoomOffset: -1, 
+  } 
+)
 
 var map = L.map("map", {
-  layers: [stamenTonerLight],
+  layers: [mapboxMap],
   center: [25.21967898039161, 55.36724330785969],
   zoom: 11,
 });
@@ -36,7 +34,7 @@ var map = L.map("map", {
 var bounds;
 
 var baseLayers = {
-  "Stamen Toner Light": stamenTonerLight,
+  "Mapbox Light": mapboxMap,
   "Open Street Maps": osm,
   "ESRI Imagery": esriWorldImagery,
 };
